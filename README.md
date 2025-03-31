@@ -5,6 +5,11 @@ The private key never leaves Google, everyone is happy. The CSR can then be used
 
 I would've done it with `openssl`, but there is no Google Cloud KMS engine available. (Sept. 2018)
 
+## Setup
+1. go mod init github.com/KarabinSE/google-cloud-kms-csr
+2. go mod tidy
+3. go mod vendor
+4. go build -o csr
 
 ## Usage
 
