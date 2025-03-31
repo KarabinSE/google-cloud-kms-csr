@@ -81,7 +81,7 @@ func main() {
 	// TODO Make this a flag or read from s.PublicKey?
 	//      https://cloud.google.com/kms/docs/algorithms
 	//      https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyVersionTemplate
-	template.SignatureAlgorithm = x509.ECDSAWithSHA256 // x509.SHA256WithRSAPSS
+	template.SignatureAlgorithm = x509.SHA512WithRSA
 
 	f, err := os.Create(*outFlag)
 	if err != nil {
@@ -135,7 +135,7 @@ func (g *GoogleKMS) Sign(rand io.Reader, digest []byte, opts crypto.SignerOpts) 
 
 	req := &cloudkms.AsymmetricSignRequest{
 		Digest: &cloudkms.Digest{
-			Sha256: digest64, // TODO: sha256 needs to follow sign algo
+			Sha512: digest64, // Använd SHA-512 istället för SHA-256
 		},
 	}
 
